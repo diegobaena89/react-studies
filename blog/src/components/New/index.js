@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './new.css';
+import firebase from '../../firebase';
 
 class New extends Component {
   constructor(props) {
@@ -9,11 +10,39 @@ class New extends Component {
       titulo: '',
       imagem: '',
       descricao: '',
+      alert: '',
     };
     this.cadastrar = this.cadastrar.bind(this);
   }
 
-  cadastrar() {}
+  componentDidMount() {
+    if (!firebase.getCurrent()) {
+      this.props.history.replace('/');
+      return null;
+    }
+  }
+
+  cadastrar = async (e) => {
+    e.preventDefault();
+
+    if (
+      this.state.titulo !== '' &&
+      this.state.imagem !== '' &&
+      this.state.descricao !== ''
+    ) {
+      let posts = firebase.app.ref('posts');
+      let chave = posts.push().key;
+      await posts.child(chave).set({
+        titulo: this.state.titulo,
+        imagem: this.state.imagem,
+        descricao: this.state.descricao,
+        autor: localStorage.nome,
+      });
+      this.props.history.push('/dashboard');
+    } else {
+      this.setState({ alert: 'Preencha todos os campos!' });
+    }
+  };
 
   render() {
     return (
@@ -22,6 +51,7 @@ class New extends Component {
           <Link to="/dashboard">Voltar</Link>
         </header>
         <form onSubmit={this.cadastrar} id="new-post">
+          <span>{this.state.alert}</span>
           <label>Título:</label>
           <br />
           <input
