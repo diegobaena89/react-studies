@@ -9,6 +9,7 @@ section#post article {
   border: 1px solid #ddd;
   margin-top: 30px;
   margin-bottom: 10px;
+  border-radius: 12px;
 }
 section#post article header {
   padding: 20px;
@@ -18,9 +19,10 @@ section#post article header {
 section#post article header .title {
   display: flex;
   flex-direction: column;
+  font-size: 1.5rem;
 }
 section#post article header .title span {
-  font-size: 13px;
+  font-size: 14px;
   padding-top: 5px;
 }
 section#post article img {
@@ -29,4 +31,5 @@ section#post article img {
 section#post article footer {
   padding: 20px;
   word-wrap: break-word;
+  font-size: 14px;
 }
