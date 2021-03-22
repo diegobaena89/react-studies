@@ -1,4 +1,5 @@
 import React from 'react'
+import './App.css'
 
 const formFields = [
   {
@@ -53,6 +54,7 @@ const App = () => {
   const [response, setResponse] = React.useState(null);
   const [textarea, setTextarea] = React.useState('');
   const [select, setSelect] = React.useState('');
+  const [produto, setProduto] = React.useState('');
 
   function handleChange({ target }){
     const {id, value} = target;
@@ -70,6 +72,10 @@ const App = () => {
     }).then(response => {
       setResponse(response);
     })
+  }
+
+  function handleChange({target}) {
+    setProduto(target.value);
   }
 
   return (
@@ -97,6 +103,24 @@ const App = () => {
       </select>
       <br />
       {select}
+      <br />
+      <div>
+      <label>
+        <input type="radio"
+        onChange={handleChange}
+        name="produto" 
+        value="smartphone"/>
+          Smartphone
+      </label>
+      <label>
+        <input 
+        type="radio" 
+        onChange={handleChange}
+        name="produto" 
+        value="notebook"/>
+          Notebook
+      </label>
+        </div>
       <br />
       <textarea value={textarea}
       onChange={({target}) => setTextarea(target.value)} />
