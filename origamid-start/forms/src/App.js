@@ -51,6 +51,8 @@ const App = () => {
   });
 
   const [response, setResponse] = React.useState(null);
+  const [textarea, setTextarea] = React.useState('');
+  const [select, setSelect] = React.useState('');
 
   function handleChange({ target }){
     const {id, value} = target;
@@ -83,7 +85,23 @@ const App = () => {
         />
       </div>
       ))}
+      <select 
+      value={select} 
+      id="produtos"
+      onChange={({ target }) => setSelect(target.value)}
+      >
+        <option disabled value="">Selecione um Produto</option>
+      <option value="notebook">Notebook</option>
+      <option value="smartphone">Smartphone</option>
+      <option value="tablet">Tablet</option>
+      </select>
+      <br />
+      {select}
+      <br />
+      <textarea value={textarea}
+      onChange={({target}) => setTextarea(target.value)} />
       {response && response.ok && <p>Formulário Enviado!</p>}
+      <br />
     <button>Enviar</button>
     </form>
   );
