@@ -1,10 +1,10 @@
 import React from 'react'
-import Primeiro from './componentes/Primeiro'
+import Saudacao from './componentes/Saudacao'
 
 const App = () => {
   return (
     <div>
-      <Primeiro />
+      <Saudacao tipo="Boa noite" nome="Diego"/>
     </div>
   )
 }
