@@ -1,0 +1,18 @@
+import React from 'react'
+
+const Radio = ({options, value, setValue}) => {
+  return (
+    <>
+    {options.map((option) => (
+    <label key={option}>
+        <input type="radio" value={option} checked={value === option}
+        onchange={({target}) => setValue
+        (target.value)}/>
+        {option}
+    </label>
+    ))}
+    </>
+  )
+}
+
+export default Radio
